@@ -1,4 +1,4 @@
-﻿document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     const addNoteBtn = document.getElementById("add-note-btn");
     const noteEditor = document.getElementById("note-editor");
     const mainContent = document.getElementById("main-content");
@@ -7,7 +7,7 @@
     const notesSection = document.getElementById("notes-section");
     const noteTitleInput = document.getElementById("note-title");
     const noteDescriptionInput = document.getElementById("note-description");
-    const editorTitle = document.getElementById("editor-title"); // Reference to the editor title
+    const editorTitle = document.getElementById("editor-title");
 
     const boldBtn = document.getElementById("bold-btn");
     const italicBtn = document.getElementById("italic-btn");
@@ -58,8 +58,8 @@
         noteEditor.classList.remove("hidden");
         setTimeout(() => noteEditor.classList.add("show"), 10);
         clearEditor();
-        currentEditNote = null; // Reset edit state
-        editorTitle.innerText = "Створити нотатку"; // Set title for new note
+        currentEditNote = null;
+        editorTitle.innerText = "Створити нотатку";
     });
 
     backBtn.addEventListener("click", function() {
@@ -84,17 +84,15 @@
         }
     }
 
-    // Function to update the no notes message visibility
     function updateNoNotesMessage() {
         const noNotesMessage = document.querySelector(".no-notes");
         if (notesSection.childNodes.length === 3) {
-            noNotesMessage.style.display = "block"; // Show if no notes
+            noNotesMessage.style.display = "block";
         } else {
-            noNotesMessage.style.display = "none"; // Hide if notes are present
+            noNotesMessage.style.display = "none";
         }
     }
 
-    // Load notes from localStorage
     function loadNotes() {
         const notes = JSON.parse(localStorage.getItem('notes')) || [];
         notes.forEach(note => {
@@ -103,7 +101,6 @@
 		updateNoNotesMessage();
     }
 
-    // Create note element
     function createNoteElement(title, description) {
         const newNote = document.createElement("div");
         newNote.classList.add("note");
@@ -123,25 +120,19 @@
 		updateNoNotesMessage();
     }
 
-    // Save or Edit Note
     saveNoteBtn.addEventListener("click", function() {
         const noteTitle = noteTitleInput.value;
         const noteDescription = noteDescriptionInput.innerHTML;
 
         if (noteTitle && noteDescription) {
             if (currentEditNote) {
-                // Update existing note
                 currentEditNote.querySelector("h3").innerText = noteTitle;
                 currentEditNote.querySelector("div").innerHTML = noteDescription;
             } else {
-                // Create new note
                 createNoteElement(noteTitle, noteDescription);
             }
 
-            // Update localStorage
             updateLocalStorage();
-
-            // Update the no notes message visibility
             updateNoNotesMessage();
 
             noteEditor.classList.remove("show");
@@ -153,7 +144,6 @@
         }
     });
 
-    // Add event listeners to note buttons
     function addNoteEventListeners(note) {
         note.querySelector(".edit-btn").addEventListener("click", function() {
             const title = note.querySelector("h3").innerText;
@@ -161,31 +151,28 @@
 
             noteTitleInput.value = title;
             noteDescriptionInput.innerHTML = description;
-            currentEditNote = note; // Set current note for editing
+            currentEditNote = note;
 
             mainContent.classList.add("hidden");
             noteEditor.classList.remove("hidden");
             setTimeout(() => noteEditor.classList.add("show"), 10);
-            editorTitle.innerText = "Редагувати нотатку"; // Change title when editing
+            editorTitle.innerText = "Редагувати нотатку";
             checkInput();
         });
 
         note.querySelector(".delete-btn").addEventListener("click", function() {
             if (confirm("Ви впевнені, що хочете видалити цю нотатку?")) {
                 note.remove();
-                // Update localStorage
                 updateLocalStorage();
-                // Update the no notes message visibility
                 updateNoNotesMessage();
             }
         });
 
-        // Up/Down button functionality
         note.querySelector(".up-btn").addEventListener("click", function() {
             const previousNote = note.previousElementSibling;
             if (previousNote) {
                 notesSection.insertBefore(note, previousNote);
-                updateLocalStorage(); // Update the order in localStorage
+                updateLocalStorage();
             }
         });
 
@@ -193,11 +180,10 @@
             const nextNote = note.nextElementSibling;
             if (nextNote) {
                 notesSection.insertBefore(nextNote, note);
-                updateLocalStorage(); // Update the order in localStorage
+                updateLocalStorage();
             }
         });
 
-        // Enable drag and drop
         note.addEventListener("dragstart", function() {
             note.classList.add("dragging");
         });
@@ -207,7 +193,6 @@
         });
     }
 
-    // Allow notes to be reordered
     notesSection.addEventListener("dragover", function(e) {
         e.preventDefault();
         const draggingNote = document.querySelector(".dragging");
@@ -217,7 +202,7 @@
         } else {
             notesSection.insertBefore(draggingNote, afterElement);
         }
-        updateLocalStorage(); // Update order in localStorage
+        updateLocalStorage();
     });
 
     function getDragAfterElement(container, y) {
@@ -247,7 +232,6 @@
         checkInput();
     }
 
-    // Update localStorage with current notes
     function updateLocalStorage() {
         const notes = [];
         notesSection.querySelectorAll('.note').forEach(note => {
@@ -261,6 +245,5 @@
         localStorage.setItem('notes', JSON.stringify(notes));
     }
 
-    // Load notes from localStorage on initial page load
     loadNotes();
 });

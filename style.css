@@ -76,7 +76,6 @@ main {
 	background-color: #008f7a;
 }
 
-/* Note Editor Panel */
 #note-editor {
 	position: fixed;
 	top: 0;
@@ -137,12 +136,11 @@ main {
 	min-height: 200px;
 	max-height: 300px;
 	overflow-y: auto;
-	/* Scrollable description box */
 	position: relative;
 }
 
 .rich-text-editor.watermark:empty:before {
-	content: "Опис нотатки...";
+	content: "СњРїРёСЃ РЅРѕС‚Р°С‚РєРё...";
 	color: #aaa;
 	position: absolute;
 	top: 10px;
@@ -150,7 +148,6 @@ main {
 	pointer-events: none;
 }
 
-/* Toolbar for rich text editing */
 .toolbar {
 	display: flex;
 	gap: 10px;
@@ -185,7 +182,6 @@ main {
 	border-radius: 10px;
 	transition: background-color 0.3s ease;
 	margin-top: 20px;
-	/* Added margin on top */
 }
 
 #save-note-btn.disabled {
@@ -193,7 +189,6 @@ main {
 	cursor: not-allowed;
 }
 
-/* Notes */
 .note {
 	background-color: #f0f0f0;
 	border-radius: 10px;
@@ -219,7 +214,6 @@ main {
 	text-overflow: ellipsis;
 }
 
-/* Add delete and edit button styles */
 .note-buttons {
 	display: flex;
 	justify-content: flex-end;
@@ -238,35 +232,27 @@ main {
 	border-radius: 5px;
 	cursor: pointer;
 	transition: background-color 0.3s ease, transform 0.2s ease;
-	/* Added transition */
 }
 
 .edit-btn {
 	background-color: #00bfa6;
-	/* Green */
 }
 
 .up-btn,
 .down-btn {
 	background-color: #007BFF;
-	/* Blue */
 }
 
 .up-btn:hover,
 .down-btn:hover {
 	background-color: #0056b3;
-	/* Darker blue on hover */
 	transform: scale(1.05);
-	/* Slightly increase size on hover */
 }
 
-/* Add hover effects for delete and edit buttons */
 .delete-btn:hover {
 	background-color: #c62828;
-	/* Darker red on hover */
 }
 
 .edit-btn:hover {
 	background-color: #009688;
-	/* Darker green on hover */
 }
