@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Онлайн - Записна Книжка</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header section -->
+    <header>
+        <h1>Онлайн - Записна Книжка</h1>
+    </header>
+
+    <!-- Main content section -->
+    <main id="main-content">
+        <h2 class="header-yournotes">Ваші нотатки</h2>
+        <section id="notes-section">
+            <p class="no-notes">Немає доступних нотаток. Натисніть кнопку +, щоб додати свою першу нотатку!</p>
+        </section>
+        <!-- Round Add Note Button -->
+        <button class="add-note-btn" id="add-note-btn">+</button>
+    </main>
+
+    <!-- Note Editor Panel -->
+    <div id="note-editor" class="hidden">
+        <div class="editor-header">
+            <button id="back-btn">Назад</button>
+            <h2 id="editor-title">Створити нотатку</h2>
+        </div>
+        <div class="editor-content">
+            <input type="text" id="note-title" placeholder="Назва нотатки">
+
+            <!-- Rich Text Toolbar -->
+            <div class="toolbar">
+                <button type="button" id="bold-btn"><b>B</b></button>
+                <button type="button" id="italic-btn"><i>I</i></button>
+                <button type="button" id="underline-btn"><u>U</u></button>
+            </div>
+
+            <!-- Description box with scrollbar -->
+            <div id="note-description" contenteditable="true" class="rich-text-editor watermark" placeholder="Опис нотатки..."></div>
+        </div>
+        <button id="save-note-btn" class="disabled" disabled>Зберегти нотатку</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
