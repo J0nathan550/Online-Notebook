@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
         newNote.setAttribute("draggable", "true");
         newNote.innerHTML = `
             <h3>${title}</h3>
-            <div>${description}</div>
+            <div class="inOneLine">${description}</div>
             <div class="note-buttons">
                 <button class="edit-btn">Редагувати</button>
                 <button class="delete-btn">Видалити</button>

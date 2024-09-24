@@ -254,3 +254,9 @@ main {
 .edit-btn:hover {
 	background-color: #009688;
 }
+
+.inOneLine{ 
+	height: 20px;
+	display: flex;
+	text-overflow:ellipsis;
+}
